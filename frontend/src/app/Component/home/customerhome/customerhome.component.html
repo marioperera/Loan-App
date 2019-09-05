@@ -1,0 +1,160 @@
+<nav class="nav">
+    <a class="nav-link active display-7" (click)="getloanview =!getloanview">View Loans</a>
+    <a class="nav-link display-7" (click)="requestLoan=!requestLoan">Request for a Loan</a>
+    <a class="nav-link display-7" (click)="calculateLoan =!calculateLoan">Price Calculator</a>
+    <a class="nav-link disabled display-7" (click)="logout()">Sign-Out</a>
+    
+</nav>
+
+<div *ngIf="getloanview" class="container">
+    <div class="jumbotron">
+        <h1 class="display-7">Current Loans</h1>
+        
+    </div>
+    <div class="row">
+      <div class="col">
+       
+      </div>
+      <div class="col-9">
+          <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Loan id</th>
+                  <th scope="col">Issued Date</th>
+                  <th scope="col">Rate</th>
+                  <th scope="col">Ammount Rs.</th>
+                  <th scope="col">Authorized Manager</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                  <td>Rs.500000</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                  <td>Rs.600000</td>
+                </tr>
+              </tbody>
+            </table>
+          
+      </div>
+      <div class="col">
+       
+      </div>
+    </div>
+</div>
+
+<!-- Request form for a Loan -->
+
+<div *ngIf="requestLoan" class="container">
+    <div class="jumbotron">
+        <h1 class="display-7">Request a loan</h1>
+        
+    </div>
+    <div class="row">
+      <div class="col">
+       
+      </div>
+      <div class="col-9">
+          <form>
+              <div class="form-group">
+                <label for="exampleInputEmail1">First Name</label>
+                <input type="text" name="firstname" class="form-control" [(ngModel)]="firstname" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter First Name according to NIC">
+             
+              </div>
+              <div class="form-group">
+                  <label for="exampleInputEmail1">Last Name</label>
+                  <input type="text" name="lastname" class="form-control" [(ngModel)]="lastname" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter First Name according to NIC">
+                 
+                </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Address</label>
+                <input type="text" name="address" class="form-control" [(ngModel)]="address" id="exampleInputPassword1" placeholder="Enter Address">
+              </div>
+              <div class="form-group">
+                  <label for="exampleInputPassword1">NIC. no</label>
+                  <input type="text" name="nic" class="form-control" [(ngModel)]="nic" id="exampleInputPassword1" placeholder="NIC No.">
+              </div>
+              <div class="form-group">
+                  <label for="exampleInputPassword1">Amount</label>
+                  <input type="number" name="amount" class="form-control" [(ngModel)]="amount" id="exampleInputPassword1" placeholder="Amount">
+              </div>
+              <div class="form-group">
+                  <label for="exampleInputPassword1">rate</label>
+                  <input type="number" name="amount" class="form-control" [(ngModel)]="rate" id="exampleInputPassword1" placeholder="Amount">
+              </div>
+              <div class="form-group">
+                  <label for="exampleInputPassword1">duration</label>
+                  <input type="number" name="duration" class="form-control" [(ngModel)]="duration" id="exampleInputPassword1" placeholder="duration">
+              </div>
+               <div class="form-group">
+                  <label for="exampleInputPassword1">Asset type</label>
+                  <input type="text" name="assettype" class="form-control" [(ngModel)]="assettype" id="exampleInputPassword1" placeholder="type of asset">
+              </div>
+              
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Accept the terms and condition</label>
+              </div>
+              <button type="submit" (click)="RequestLoan()" class="btn btn-primary">Submit</button>
+            </form> 
+      </div>
+      <div class="col">
+       
+      </div>
+    </div>
+</div>
+
+<div *ngIf="calculateLoan" class="container">
+    <div class="jumbotron">
+        <h1 class="display-7">Calculate Interest</h1>
+        
+    </div>
+    <div class="row">
+      <div class="col">
+       
+      </div>
+      <div class="col-9">
+          <form>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Amount</label>
+                <input type="number" name="amount" class="form-control" [(ngModel)]="amount" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Amount">
+             
+              </div>
+              <div class="form-group">
+                  <label for="exampleInputEmail1">Interest Rate</label>
+                  <input type="number" name="rate" class="form-control" [(ngModel)]="rate" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Rate">
+                 
+                </div>
+              
+              <div class="form-group">
+                  <label for="exampleInputPassword1">Duration(yrs)</label>
+                  <input type="number" name="rate" class="form-control" [(ngModel)]="duration" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Duration 1,2,4 or 6 yrs">
+                 
+                  
+              </div>
+             
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" (change)="isCompound=!isCompound"  id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Compound Intrest</label>
+              </div>
+              <div class="form-check">
+                  <input type="checkbox" class="form-check-input" (change)="isSimple=!isSimple" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">Simple Intrest</label>
+                </div>
+              <button type="submit" class="btn btn-primary" (click)="generateIntrest()">Submit</button>
+            </form> 
+      </div>
+      <div class="col">
+       
+      </div>
+    </div>
+</div>
+
