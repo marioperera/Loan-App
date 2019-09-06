@@ -1,5 +1,5 @@
 <header>
-  <nav class="navbar navbar-light" style="background-color: #349ce6;">
+  <!-- <nav class="navbar navbar-light" style="background-color: #349ce6;">
   <div><a class="navbar-brand">LoanRequest App</a></div>
   <li><a *ngIf="loginService.isUserLoggedIn()"  style="color: aliceblue;">View Current Loans</a></li>
   <li><a *ngIf="loginService.isUserLoggedIn()"  style="color: aliceblue;" class="nav-link">Request New Loan</a></li>
@@ -9,6 +9,23 @@
 
  
   
+  </nav> -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" > Loan-App Admin Panel</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active"  routerLink='/Authorizeloan'>Authorise Loans <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link active"  routerLink='/viewacceptedloans'>View Loans</a>
+        <a class="nav-item nav-link active" *ngIf="loginService.isUserLoggedIn()" (click)="Logout()">Log Out</a>
+        <!-- <a class="nav-item nav-link active" (click)="logout()"></a>Log Out</a> -->
+       
+      </div>
+    </div>
   </nav>
-  
+
+
   </header>
+  <router-outlet></router-outlet>

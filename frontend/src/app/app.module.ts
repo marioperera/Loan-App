@@ -10,7 +10,9 @@ import { CustomerhomeComponent } from './Component/home/customerhome/customerhom
 import { AdminhomeComponent } from './Component/home/adminhome/adminhome.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './Component/shared/header/header.component';
-import { FooterComponent } from './Component/shared/footer/footer.component'; 
+import { FooterComponent } from './Component/shared/footer/footer.component';
+import { AuthorizeLoanComponent } from './Component/authorize-loan/authorize-loan.component';
+import { ViewAcceptedLoansComponent } from './Component/view-accepted-loans/view-accepted-loans.component'; 
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { FooterComponent } from './Component/shared/footer/footer.component';
     CustomerhomeComponent,
     AdminhomeComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    AuthorizeLoanComponent,
+    ViewAcceptedLoansComponent
   ],
   imports: [
     BrowserModule,
