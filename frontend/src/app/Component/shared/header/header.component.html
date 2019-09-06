@@ -1,0 +1,14 @@
+<header>
+  <nav class="navbar navbar-light" style="background-color: #349ce6;">
+  <div><a class="navbar-brand">LoanRequest App</a></div>
+  <li><a *ngIf="loginService.isUserLoggedIn()"  style="color: aliceblue;">View Current Loans</a></li>
+  <li><a *ngIf="loginService.isUserLoggedIn()"  style="color: aliceblue;" class="nav-link">Request New Loan</a></li>
+  <li><a *ngIf="!loginService.isUserLoggedIn()"  style="color: aliceblue;" class="nav-link">Login</a></li>
+  <li><a *ngIf="loginService.isUserLoggedIn()" style="margin-right: 10%" style="color: aliceblue;" routerLink="/logout" class="nav-link">LogOut</a></li>
+
+
+ 
+  
+  </nav>
+  
+  </header>

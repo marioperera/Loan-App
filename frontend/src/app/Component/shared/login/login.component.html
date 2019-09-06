@@ -1,0 +1,39 @@
+<div class="row ">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+  
+        </div>
+        <div class="col-md">
+          
+
+<form class="text-center border border-light p-5">
+
+    <p class="h4 mb-4">Sign in</p>
+    <input input type="text" name="username" [(ngModel)]="username" class="form-control mb-4" placeholder="Enter Username">
+  
+    <input input type="password" name="password" [(ngModel)]="password" class="form-control mb-4" placeholder="Enter Password">
+  
+
+    <button mdbBtn color="info" block="true" (click)=checkLogin() class="btn btn-success" type="submit">Sign in</button>
+  
+    <p>Not a member?
+      <button (click)="routetoRegister()" class="btn btn-link">Register</button>
+    </p>
+  
+    <p>or sign in with:</p>
+  
+  </form>
+        </div>
+        <div class="col-sm">
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+
+
+<router-outlet></router-outlet>

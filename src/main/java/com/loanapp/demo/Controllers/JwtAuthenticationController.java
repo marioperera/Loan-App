@@ -13,6 +13,7 @@ import com.loanapp.demo.Models.JwtResponse;
 import com.loanapp.demo.Models.Users;
 import com.loanapp.demo.Repositories.UsersRepository;
 import com.loanapp.demo.Service.JwtUserDetailsService;
+import com.loanapp.demo.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -33,11 +34,16 @@ public class JwtAuthenticationController {
     private JwtTokenUtil jwtTokenUtil;
     @Autowired
     private JwtUserDetailsService userDetailsService;
-//    @Autowired
-//    private UsersRepository usersRepository;
+    @Autowired
+    private UserDao usersRepository;
 //
 //    @Autowired
 //    private PasswordEncoder bcryptEncoder;
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "/test", method =RequestMethod.GET)
+    public String sendresp(){
+        return "Hello World";
+    }
 
 
   //  @PostMapping("/authenticate")
@@ -45,12 +51,14 @@ public class JwtAuthenticationController {
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
         Logger.getAnonymousLogger().warning("/authentication called");
         //logger.warn("JWT Token does not begin with Bearer String");
-        Logger.getAnonymousLogger().warning(authenticationRequest.getUsername());
+        String u_name =authenticationRequest.getUsername();
+        Logger.getAnonymousLogger().warning(u_name);
+        String role =usersRepository.findByUsername(u_name).getRole();
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
         final UserDetails userDetails = userDetailsService
                 .loadUserByUsername(authenticationRequest.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
-        return ResponseEntity.ok(new JwtResponse(token));
+        return ResponseEntity.ok(new JwtResponse(token,role));
     }
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
@@ -77,4 +85,6 @@ public class JwtAuthenticationController {
             throw new Exception("INVALID_CREDENTIALS", e);
         }
     }
+
+
 }
