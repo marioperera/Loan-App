@@ -14,6 +14,8 @@ import { FooterComponent } from './Component/shared/footer/footer.component';
 import { AuthorizeLoanComponent } from './Component/authorize-loan/authorize-loan.component';
 import { ViewAcceptedLoansComponent } from './Component/view-accepted-loans/view-accepted-loans.component'; 
 
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +30,7 @@ import { ViewAcceptedLoansComponent } from './Component/view-accepted-loans/view
     ViewAcceptedLoansComponent
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,

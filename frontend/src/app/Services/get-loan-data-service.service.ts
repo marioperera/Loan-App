@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { LoanRequest } from '../Models/LoanRequest';
+import { load } from '@angular/core/src/render3';
+import { AuthorizeLoanRequest } from '../Models/AuthorizeLoanRequest';
 
 
 @Injectable({
@@ -12,6 +14,16 @@ export class GetLoanDataServiceService {
   constructor(
     private httpClient: HttpClient
   ) {
+  }
+  getAllaccepted(){
+    return this.httpClient.get('http://localhost:8080/getAllacceptedLoans').pipe(map(
+      LoanInfo =>{
+        console.log(LoanInfo);
+        
+        return LoanInfo;
+
+      }
+    ))
   }
 
   testAPI(){
@@ -48,5 +60,36 @@ export class GetLoanDataServiceService {
         
       }
     ))
+  }
+
+  getLoanstobeAccepted(){
+    return this.httpClient.get<LoanRequest>('http://localhost:8080/LoanstobeAccepted');
+  }
+
+  AcceptRequest(Loan){
+   console.log("accept request called");
+   // console.log(admin,client);
+    // const loanrequest =new AuthorizeLoanRequest();
+    // loanrequest.AuthorizeeUsername =client;
+    // loanrequest.AuthorizerUsername =admin;
+    // console.log(loanrequest);
+    
+    
+    return this.httpClient.post<AuthorizeLoanRequest>('http://localhost:8080/AuthorizeLoan',Loan).pipe(map(res=>{
+      console.log(res);
+      return res;
+      
+    }))
+  }
+
+  RejectRequest(Loan){
+    console.log("reject request called");
+    
+    return this.httpClient.post<LoanRequest>('http://localhost:8080/Deleterequest',Loan).pipe(map(res =>{
+      console.log(res);
+      return res;
+      
+    }))
+
   }
 }

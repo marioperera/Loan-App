@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import sun.rmi.runtime.Log;
+//import sun.rmi.runtime.Log;
 
 @Component
 public class JwtTokenUtil implements Serializable {

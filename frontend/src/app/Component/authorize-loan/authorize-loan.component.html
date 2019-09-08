@@ -1,4 +1,39 @@
 <app-header></app-header>
-<p>
-  authorize-loan works!
-</p>
+
+<div class="row">
+  <div class="col">
+   
+  </div>
+  <div class="col-8" style="padding-top: 20px;">
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Firstname</th>
+          <th scope="col">Lastname</th>
+          <th scope="col">nic</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Applicable rate</th>
+          <th scope="col">Duration</th>
+          <th scope="col">Accept</th>
+          <th scope="col">Reject</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let loan of loans">
+        <tr>
+          <td>{{loan.firstname}}</td>
+          <td>{{loan.lastname}}</td>
+          <td>{{loan.nic}}</td>
+          <td>{{loan.amount}}</td>
+          <td>{{loan.rate}}</td>
+          <td>{{loan.duration}}</td>
+          <td><button type="button" (click)="AcceptLoan(loan)" class="btn btn-success">Accept</button></td>
+          <td><button type="button" (click)="RejectLoan(loan)" class="btn btn-danger">Reject</button></td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+   
+  </div>
+</div>

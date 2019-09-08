@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GetLoanDataServiceService } from 'src/app/Services/get-loan-data-service.service';
 import { LoanRequest } from 'src/app/Models/LoanRequest';
+import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-customerhome',
@@ -31,19 +32,74 @@ export class CustomerhomeComponent implements OnInit {
   duration_yr:number ;
   isCompound:boolean =false;
   isSimple:boolean =false;  
+  formdata;
 
   car:Car = new Car();
   colours = Array<Colour>();
   constructor(private router: Router,private getloansService:GetLoanDataServiceService) { }
 
   ngOnInit() {
-    this.getloansService.getloandetails().subscribe(res =>{
-      console.log("from component"+res);
-      
-    })
+    this.formdata = new FormGroup({
+      nic: new FormControl("", Validators.compose([
+         Validators.required,
+         Validators.pattern("[0-9]{9}[x|X|v|V]$")
+      ])),
+      amount: new FormControl("",Validators.compose([
+        Validators.required,
+        Validators.max(1000000),
+        Validators.min(10000)
+      ])),
+      duration:new FormControl("",Validators.compose([
+        Validators.required,
+        Validators.maxLength(1),
+        
+      ])),
+      firstname:new FormControl("",Validators.required),
+      lastname:new FormControl("",Validators.required),
+      address:new FormControl("",Validators.required),
+      assettype:new FormControl("",Validators.required)
+
+   });
+  }
+
+  toggleGetLoan(){
+    if(this.getloanview){
+      this.requestLoan =false;
+      this.calculateLoan =false
+      this.getloanview =false;
+    }else{
+      this.getloanview =true;
+      this.calculateLoan =false
+      this.getloanview =false;
+    }
+  }
+
+  toggleRequestloan(){
+    if(this.requestLoan){
+      this.getloanview =false;
+      this.calculateLoan =false
+      this.requestLoan =false;
+    }else{
+      this.requestLoan =true;
+      this.calculateLoan =false
+      this.getloanview =false;
+    }
+  }
+
+  togglecalculator(){
+    if(this.calculateLoan){
+      this.getloanview =false;
+      this.calculateLoan =false
+      this.requestLoan =false;
+    }else{
+      this.calculateLoan =true;
+      this.requestLoan =false
+      this.getloanview =false;
+    }
+  }
+  getLoan(FormControl){
+    console.log(FormControl);
     
-
-
   }
 
   RequestLoan(){

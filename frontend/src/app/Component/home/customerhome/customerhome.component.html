@@ -1,8 +1,8 @@
-<nav class="nav">
-    <a class="nav-link active display-7" (click)="getloanview =!getloanview">View Loans</a>
-    <a class="nav-link display-7" (click)="requestLoan=!requestLoan">Request for a Loan</a>
-    <a class="nav-link display-7" (click)="calculateLoan =!calculateLoan">Price Calculator</a>
-    <a class="nav-link disabled display-7" (click)="logout()">Sign-Out</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <a class="nav-link active display-7" (click)="toggleGetLoan()" style="color: azure">View Loans</a>
+    <a class="nav-link display-7" (click)="toggleRequestloan()" style="color: azure">Request for a Loan</a>
+    <a class="nav-link display-7" (click)="togglecalculator()" style="color: azure">Price Calculator</a>
+    <a class="nav-link disabled display-7" (click)="logout()" style="color: azure">Sign-Out</a>
     
 </nav>
 
@@ -53,8 +53,8 @@
 
 <!-- Request form for a Loan -->
 
-<div *ngIf="requestLoan" class="container">
-    <div class="jumbotron">
+<div *ngIf="requestLoan" class="container" style="color: cadetblue">
+    <div class="jumbotron" style="color: burlywood;margin: 10px">
         <h1 class="display-7">Request a loan</h1>
         
     </div>
@@ -63,47 +63,47 @@
        
       </div>
       <div class="col-9">
-          <form>
+          <form [formGroup]="formdata" [ngClass]="{'disabled': formdata.errors}" (ngSubmit) = "RequestLoan(formdata.value)">
               <div class="form-group">
                 <label for="exampleInputEmail1">First Name</label>
-                <input type="text" name="firstname" class="form-control" [(ngModel)]="firstname" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter First Name according to NIC">
-             
+                <input type="text" formControlName="firstname" class="form-control" [(ngModel)]="firstname" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter First Name according to NIC">
+              
               </div>
               <div class="form-group">
                   <label for="exampleInputEmail1">Last Name</label>
-                  <input type="text" name="lastname" class="form-control" [(ngModel)]="lastname" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter First Name according to NIC">
-                 
+                  <input type="text" formControlName="lastname"[ngClass]="{'is-invalid': formdata.get('lastname').errors && formdata.get('lastname').touched}"  class="form-control" [(ngModel)]="lastname" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter First Name according to NIC">
+                  <span *ngIf="formdata.get('lastname').errors && formdata.get('lastname').touched">lastname is required</span>
                 </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">Address</label>
-                <input type="text" name="address" class="form-control" [(ngModel)]="address" id="exampleInputPassword1" placeholder="Enter Address">
+                <input type="text" formControlName="address" [ngClass]="{'is-invalid': formdata.get('address').errors && formdata.get('address').touched}"  class="form-control" [(ngModel)]="address" id="exampleInputPassword1" placeholder="Enter Address">
+                <span *ngIf="formdata.get('address').errors && formdata.get('address').touched">A Valid Address is required</span>
               </div>
               <div class="form-group">
-                  <label for="exampleInputPassword1">NIC. no</label>
-                  <input type="text" name="nic" class="form-control" [(ngModel)]="nic" id="exampleInputPassword1" placeholder="NIC No.">
+                <label for="exampleInputPassword1">NIC. no</label>
+                <input type="text" formControlName="nic" [ngClass]="{'is-invalid': formdata.get('nic').errors && formdata.get('nic').touched}" class="form-control" [(ngModel)]="nic" id="exampleInputPassword1" placeholder="NIC No.">
+                <span *ngIf="formdata.get('nic').errors && formdata.get('nic').touched">The nic is not valid</span>
               </div>
               <div class="form-group">
-                  <label for="exampleInputPassword1">Amount</label>
-                  <input type="number" name="amount" class="form-control" [(ngModel)]="amount" id="exampleInputPassword1" placeholder="Amount">
+                <label for="exampleInputPassword1">Amount</label>
+                <input type="number" formControlName="amount" [ngClass]="{'is-invalid': formdata.get('amount').errors && formdata.get('amount').touched}" class="form-control" [(ngModel)]="amount" id="exampleInputPassword1" placeholder="Amount">
+                <span *ngIf="formdata.get('amount').errors && formdata.get('amount').touched">enter an amount less than 10mn</span>
               </div>
               <div class="form-group">
-                  <label for="exampleInputPassword1">rate</label>
-                  <input type="number" name="amount" class="form-control" [(ngModel)]="rate" id="exampleInputPassword1" placeholder="Amount">
-              </div>
-              <div class="form-group">
-                  <label for="exampleInputPassword1">duration</label>
-                  <input type="number" name="duration" class="form-control" [(ngModel)]="duration" id="exampleInputPassword1" placeholder="duration">
+                <label for="exampleInputPassword1">duration</label>
+                <input type="number" formControlName="duration" [ngClass]="{'is-invalid': formdata.get('duration').errors && formdata.get('duration').touched}" class="form-control" [(ngModel)]="duration" id="exampleInputPassword1" placeholder="duration">
+                <span *ngIf="formdata.get('duration').errors && formdata.get('duration').touched">Enter a number less than 10 yrs</span>
               </div>
                <div class="form-group">
                   <label for="exampleInputPassword1">Asset type</label>
-                  <input type="text" name="assettype" class="form-control" [(ngModel)]="assettype" id="exampleInputPassword1" placeholder="type of asset">
+                  <input type="text" formControlName="assettype" [ngClass]="{'is-invalid': formdata.get('assettype').errors && formdata.get('assettype').touched}" class="form-control" [(ngModel)]="assettype" id="exampleInputPassword1" placeholder="type of asset">
               </div>
               
               <div class="form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                 <label class="form-check-label" for="exampleCheck1">Accept the terms and condition</label>
               </div>
-              <button type="submit" (click)="RequestLoan()" class="btn btn-primary">Submit</button>
+              <button type="submit"  class="btn btn-primary">Submit</button>
             </form> 
       </div>
       <div class="col">
@@ -112,8 +112,8 @@
     </div>
 </div>
 
-<div *ngIf="calculateLoan" class="container">
-    <div class="jumbotron">
+<div *ngIf="calculateLoan" class="container" style="color: cadetblue">
+    <div class="jumbotron" style="color: burlywood;margin: 10px">
         <h1 class="display-7">Calculate Interest</h1>
         
     </div>

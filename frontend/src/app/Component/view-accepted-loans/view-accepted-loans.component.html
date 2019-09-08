@@ -1,5 +1,37 @@
 <app-header></app-header>
 
-<p>
-  view-accepted-loans works!
-</p>
+<div class="row">
+  <div class="col">
+   
+  </div>
+  <div class="col-8" style="padding-top: 20px;">
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col" style="color: aquamarine">Issue id</th>
+          <th scope="col" style="color: aquamarine">Lastname</th>
+          <th scope="col" style="color: aquamarine">Date</th>
+          <th scope="col" style="color: aquamarine">Amount</th>
+          <th scope="col" style="color: aquamarine">Applicable rate</th>
+          <th scope="col" style="color: aquamarine">Duration</th>
+          <th scope="col" style="color: aquamarine">Reference Code</th>
+        </tr>
+      </thead >
+      <tbody *ngFor="let item of loans">
+        <tr>
+          <td>{{item.id}}</td>
+          <td>{{item.username}}</td>
+          <td>{{item.data}}</td>
+          <td>{{item.amount}}</td>
+          <td>{{item.rate}}</td>
+          <td>{{item.manager}}</td>
+          <td>{{item.refcode}}</td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+   
+  </div>
+</div>

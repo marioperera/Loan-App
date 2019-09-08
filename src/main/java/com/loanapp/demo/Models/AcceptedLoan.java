@@ -19,6 +19,16 @@ public class AcceptedLoan {
     private String data;
     @Column
     private String username;
+    @Column
+    private String refcode;
+
+    public String getRefcode() {
+        return refcode;
+    }
+
+    public void setRefcode(String refcode) {
+        this.refcode = refcode;
+    }
 
     public Long getId() {
         return id;
