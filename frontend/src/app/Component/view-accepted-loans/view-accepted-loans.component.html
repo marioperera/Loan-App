@@ -5,11 +5,17 @@
    
   </div>
   <div class="col-8" style="padding-top: 20px;">
+    <form class="form-group"  [formGroup]="myForm">
+      <label for="exampleInputPassword1">Filter</label>
+      <input type="text" [(ngModel)]="usename" class="form-control" formControlName="username" id="exampleInputPassword1" placeholder="Enter Username">
+    </form>
+    
+   
     <table class="table table-striped">
       <thead class="thead-dark">
         <tr>
           <th scope="col" style="color: aquamarine">Issue id</th>
-          <th scope="col" style="color: aquamarine">Lastname</th>
+          <th scope="col" style="color: aquamarine">username</th>
           <th scope="col" style="color: aquamarine">Date</th>
           <th scope="col" style="color: aquamarine">Amount</th>
           <th scope="col" style="color: aquamarine">Applicable rate</th>

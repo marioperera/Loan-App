@@ -72,7 +72,7 @@ public class LoanController {
         Logger.getAnonymousLogger().warning(request.getUsername());
         String requester =request.getUsername();
         String authorizer ="admin";
-        if(requester !=null ||authorizer!=null){
+        if(requester !=null){
             LoanRequest loanRequest =request;
             AcceptedLoan acceptedLoan =new AcceptedLoan();
             acceptedLoan.setAmount(loanRequest.getAmount());

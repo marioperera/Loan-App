@@ -10,9 +10,9 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
 })
 export class RegisterComponent implements OnInit {
 
-  username = ''
-  password = ''
-  email = ''
+  username:String = ''
+  password:String = ''
+  email:String = ''
   invalidLogin = false
 
   constructor(private router: Router,
@@ -22,14 +22,19 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    this.loginservice.Register(this.username,this.password,this.email).subscribe(Data =>{
-      if(Data.username){
-        console.log("user has registered"+Data.username);
-        
+    console.log("register called");
+    
+    this.loginservice.Register(this.username,this.password,this.email).subscribe((Data:any) =>{
+      if(Data.status =="fail"){
+        this.invalidLogin =true;
+        console.log(Data);
+      }else{
         this.router.navigate(['login']);
       }
+      
     })
-
+    
+    
   }
 
   routetologin(){

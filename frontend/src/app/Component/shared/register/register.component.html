@@ -19,8 +19,10 @@
           <input input type="email" name="email" [(ngModel)]="email" class="form-control mb-4"
             placeholder="Enter Email">
 
+          <span *ngIf="invalidLogin">Sorry the user allready exists</span>
 
-          <button mdbBtn color="info" block="true" (click)=register() class="btn btn-primary"
+
+          <button mdbBtn color="info" block="true" (click)="register()" class="btn btn-primary"
             type="submit">Register</button>
 
 

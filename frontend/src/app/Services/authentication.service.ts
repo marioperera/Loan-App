@@ -20,12 +20,7 @@ export class AuthenticationService {
   }
 
   Register(username,password,email){
-    return this.httpClient.post<any>('http://localhost:8080/register',{username,password,email}).pipe(map(
-      UserInfo =>{
-        return UserInfo.username;
-
-      }
-    ))
+    return this.httpClient.post<any>('http://localhost:8080/register',{username,password,email})
   }
 
   authenticate(username, password) {

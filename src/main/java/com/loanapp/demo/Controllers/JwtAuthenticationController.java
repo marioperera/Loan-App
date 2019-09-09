@@ -4,13 +4,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.logging.Logger;
 
-import com.loanapp.demo.Models.UserDTO;
+import com.loanapp.demo.Models.*;
 import com.loanapp.demo.Repositories.UsersRepository;
 
 import com.loanapp.demo.Config.JwtTokenUtil;
-import com.loanapp.demo.Models.JwtRequest;
-import com.loanapp.demo.Models.JwtResponse;
-import com.loanapp.demo.Models.Users;
 import com.loanapp.demo.Repositories.UsersRepository;
 import com.loanapp.demo.Service.JwtUserDetailsService;
 import com.loanapp.demo.dao.UserDao;
@@ -61,12 +58,17 @@ public class JwtAuthenticationController {
         return ResponseEntity.ok(new JwtResponse(token,role));
     }
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
-        UserDao existsUser = (UserDao) usersRepository.findByUsername(user.getUsername());
+    public Httpresponse saveUser(@RequestBody UserDTO user) throws Exception {
+        DAOUser existsUser = (DAOUser) usersRepository.findByUsername(user.getUsername());
         if(existsUser !=null){
-            return ResponseEntity.ok("error");
+            Logger.getAnonymousLogger().warning("the user allready exists");
+            Httpresponse http =new Httpresponse();
+            http.setStatus("fail");
+            return http;
         }else{
-            return ResponseEntity.ok(userDetailsService.save(user));
+            Httpresponse http =new Httpresponse();
+            http.setStatus("ok");
+            return http;
         }
 
     }
