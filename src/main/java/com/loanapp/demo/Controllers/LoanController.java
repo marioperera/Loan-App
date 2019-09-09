@@ -158,7 +158,7 @@ public class LoanController {
         String Capital_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String Small_chars = "abcdefghijklmnopqrstuvwxyz";
         String numbers = "0123456789";
-        String symbols = "!@#$%^&*_=+-/.?<>)";
+        String symbols = "@#$%&)";
 
 
         String values = Capital_chars + Small_chars +

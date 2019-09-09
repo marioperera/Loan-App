@@ -62,7 +62,13 @@ public class JwtAuthenticationController {
     }
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
-        return ResponseEntity.ok(userDetailsService.save(user));
+        UserDao existsUser = (UserDao) usersRepository.findByUsername(user.getUsername());
+        if(existsUser !=null){
+            return ResponseEntity.ok("error");
+        }else{
+            return ResponseEntity.ok(userDetailsService.save(user));
+        }
+
     }
 //    public Users RegisterUser(@RequestBody Users users) throws Exception{
 //        String Email =users.getEmail();
