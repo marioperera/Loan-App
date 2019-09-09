@@ -136,9 +136,9 @@ public class LoanController {
         }catch (NullPointerException e){
             e.printStackTrace();
         }
-
-        msg.setTo(user.getEmail());
-//        msg.setTo("pereramario19@gmail.com");
+        msg.setFrom("bankdemo2019@gmail.com");
+//        msg.setTo(user.getEmail());
+        msg.setTo("pereramario19@gmail.com");
         //DEBUGING
         msg.setSubject("Congradulations!! your Loan Request has been accepted");
         msg.setText("Your Reference Code For the Loan is "+refcode+"\n Please refer for further Details from the bank branch");

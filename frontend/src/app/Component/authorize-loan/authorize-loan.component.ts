@@ -34,6 +34,7 @@ export class AuthorizeLoanComponent implements OnInit {
 
   AcceptLoan(loan:LoanRequest){
 
+    alert("You have Accepted the laon Request")
     console.log(loan);
     this.getloansService.AcceptRequest(loan).subscribe(res=>{
       console.log(res);
@@ -44,6 +45,7 @@ export class AuthorizeLoanComponent implements OnInit {
 
   RejectLoan(loan:LoanRequest){
 
+    alert("you have rejected the loan Request")
     console.log(loan);
     this.getloansService.RejectRequest(loan).subscribe(res =>{
       console.log(res);
