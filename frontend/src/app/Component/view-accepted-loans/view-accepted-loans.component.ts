@@ -46,8 +46,8 @@ export class ViewAcceptedLoansComponent implements OnInit {
 
   transform(items: any[], filterQuery: any): any[] {
     
-    if (!filterQuery) return this.backup_loans;
-    return items.filter(item => item.refcode.toLowerCase().includes(filterQuery.username));
+    if (!filterQuery||!items) return this.backup_loans;
+    return items.filter(item => item.refcode.toLowerCase().indexOf(filterQuery.username) !==-1);
   }
 
   updateLoans(res){
