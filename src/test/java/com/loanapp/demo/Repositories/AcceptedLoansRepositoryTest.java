@@ -34,7 +34,7 @@ public class AcceptedLoansRepositoryTest {
         acceptedLoans.add(acceptedLoan);
         when(this.acceptedLoansRepository.getOne((new Long(12) ))).thenReturn(acceptedLoan);
         assertEquals(this.acceptedLoansRepository.getOne(new Long(12)).getId(),new Long(12));
-      //  verify(acceptedLoansRepository,times(1)).getOne();
+        verify(acceptedLoansRepository,times(1)).getOne(new Long(12));
     }
 
 }

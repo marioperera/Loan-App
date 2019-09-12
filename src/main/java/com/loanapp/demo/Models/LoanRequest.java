@@ -11,6 +11,10 @@ public class LoanRequest  {
     private String username;
     @Column
     private String firstname;
+
+    public LoanRequest() {
+    }
+
     @Column
     private String lastname;
     @Column
@@ -25,6 +29,12 @@ public class LoanRequest  {
     private String rate;
     @Column
     private Long amount;
+
+    public LoanRequest(String username, String firstname, String lastname) {
+        this.username = username;
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
 
 
     public String getUsername() {
