@@ -14,20 +14,21 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.HashSet;
 import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 public class LoanControllerTest {
 
     LoanController loanController;
 
-    @Autowired
-    public MockMvc mvc;
+
 
     @Mock
     LoanRequestRepository loanRequestRepository;
@@ -48,18 +49,25 @@ public class LoanControllerTest {
     }
 
     @Test
-    public void getrequests() {
+    public void getrequests() throws Exception {
 //  TEST CODE IN MOCKMVC
-        try {
-            mvc.perform(MockMvcRequestBuilders.post("/Deleterequest")
-                    .content(asJsonString(new LoanRequest("testuser","firstname","lastname")))
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .accept(MediaType.APPLICATION_JSON))
-                    .andExpect(status().isCreated())
-                    .andExpect(MockMvcResultMatchers.jsonPath("$.status").exists());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            mvc.perform(MockMvcRequestBuilders.post("/Deleterequest")
+//                    .content(asJsonString(new LoanRequest("testuser","firstname","lastname")))
+//                    .contentType(MediaType.APPLICATION_JSON)
+//                    .accept(MediaType.APPLICATION_JSON))
+//                    .andExpect(status().isCreated())
+//                    .andExpect(MockMvcResultMatchers.jsonPath("$.status").exists());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+        MockMvc mvc = MockMvcBuilders.standaloneSetup(loanController).build();
+        mvc.perform(post("/Deleterequest")
+                .content(asJsonString(new LoanRequest("testuser","firstname","lastname")))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.status").exists());
+
 
 
 //  TEST CODE FOR FUNCTIONALITY
