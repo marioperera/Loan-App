@@ -59,6 +59,7 @@ public class JwtAuthenticationController {
     }
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public Httpresponse saveUser(@RequestBody UserDTO user) throws Exception {
+        UserDTO usernew =user;
         DAOUser existsUser = (DAOUser) usersRepository.findByUsername(user.getUsername());
         if(existsUser !=null){
             Logger.getAnonymousLogger().warning("the user allready exists");
@@ -67,6 +68,8 @@ public class JwtAuthenticationController {
             return http;
         }else{
             Httpresponse http =new Httpresponse();
+            //usersRepository.save(new UserDao(user.getUsername(),user.getPassword()));
+            userDetailsService.save(user);
             http.setStatus("ok");
             return http;
         }
